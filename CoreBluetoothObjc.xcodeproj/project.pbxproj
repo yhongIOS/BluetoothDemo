@@ -14,6 +14,8 @@
 		409E24101BCF5831009282F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409E240F1BCF5831009282F0 /* Images.xcassets */; };
 		409E24131BCF5831009282F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409E24111BCF5831009282F0 /* LaunchScreen.xib */; };
 		409E241F1BCF5831009282F0 /* CoreBluetoothObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E241E1BCF5831009282F0 /* CoreBluetoothObjcTests.m */; };
+		409E242B1BCF5844009282F0 /* CoreBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E242A1BCF5844009282F0 /* CoreBluetoothManager.m */; };
+		409E242D1BCF5869009282F0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409E242C1BCF5869009282F0 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		409E24181BCF5831009282F0 /* CoreBluetoothObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreBluetoothObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		409E241D1BCF5831009282F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		409E241E1BCF5831009282F0 /* CoreBluetoothObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreBluetoothObjcTests.m; sourceTree = "<group>"; };
+		409E24291BCF5844009282F0 /* CoreBluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreBluetoothManager.h; sourceTree = "<group>"; };
+		409E242A1BCF5844009282F0 /* CoreBluetoothManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreBluetoothManager.m; sourceTree = "<group>"; };
+		409E242C1BCF5869009282F0 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				409E242D1BCF5869009282F0 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,7 @@
 		409E23F61BCF5830009282F0 = {
 			isa = PBXGroup;
 			children = (
+				409E242C1BCF5869009282F0 /* CoreBluetooth.framework */,
 				409E24011BCF5830009282F0 /* CoreBluetoothObjc */,
 				409E241B1BCF5831009282F0 /* CoreBluetoothObjcTests */,
 				409E24001BCF5830009282F0 /* Products */,
@@ -81,6 +88,7 @@
 		409E24011BCF5830009282F0 /* CoreBluetoothObjc */ = {
 			isa = PBXGroup;
 			children = (
+				409E24281BCF5834009282F0 /* Util */,
 				409E24061BCF5830009282F0 /* AppDelegate.h */,
 				409E24071BCF5831009282F0 /* AppDelegate.m */,
 				409E24091BCF5831009282F0 /* ViewController.h */,
@@ -117,6 +125,15 @@
 				409E241D1BCF5831009282F0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		409E24281BCF5834009282F0 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				409E24291BCF5844009282F0 /* CoreBluetoothManager.h */,
+				409E242A1BCF5844009282F0 /* CoreBluetoothManager.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +239,7 @@
 				409E240B1BCF5831009282F0 /* ViewController.m in Sources */,
 				409E24081BCF5831009282F0 /* AppDelegate.m in Sources */,
 				409E24051BCF5830009282F0 /* main.m in Sources */,
+				409E242B1BCF5844009282F0 /* CoreBluetoothManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
