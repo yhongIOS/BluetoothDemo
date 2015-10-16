@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+
+@protocol CoreBluetoothManagerDelegate <NSObject>
+
+- (void)coreBluetoothManagerDidScanPeripheral:(CBPeripheral *)peripheral;
+
+@end
 
 @interface CoreBluetoothManager : NSObject
 
-+ (CoreBluetoothManager *)sharedManager;
+@property (nonatomic, weak) id<CoreBluetoothManagerDelegate> delegate;
+
+//+ (CoreBluetoothManager *)sharedManager;
 
 - (void)scanAllPeripheralDevices;
 

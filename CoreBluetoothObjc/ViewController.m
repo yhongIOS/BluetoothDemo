@@ -8,11 +8,16 @@
 
 #import "ViewController.h"
 #import "CoreBluetoothManager.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ViewController ()
+static NSString * const kTableViewCellId = @"kTableViewCellId";
+
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate, CoreBluetoothManagerDelegate>
 {
     CoreBluetoothManager *bluetoothManager;
+    NSMutableArray *peripheralArray;
 }
+@property (weak, nonatomic) IBOutlet UITableView *bluetoothDeviceTableView;
 
 @end
 
@@ -20,7 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    bluetoothManager = [CoreBluetoothManager sharedManager];
+    peripheralArray = [NSMutableArray array];
+    
+    bluetoothManager = [[CoreBluetoothManager alloc] init];
+    bluetoothManager.delegate = self;
+    
+    [_bluetoothDeviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellId];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -34,6 +44,36 @@
 - (IBAction)scanAllDevices:(id)sender
 {
     [bluetoothManager scanAllPeripheralDevices];
+}
+
+#pragma mark - TableView Datasource && Delegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return peripheralArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellId];
+    
+    CBPeripheral *peripheral = peripheralArray[indexPath.row];
+    cell.textLabel.text = peripheral.name;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#pragma mark CoreBluetoothManager Delegate
+
+- (void)coreBluetoothManagerDidScanPeripheral:(CBPeripheral *)peripheral
+{
+    [peripheralArray addObject:peripheral];
+    [_bluetoothDeviceTableView reloadData];
 }
 
 @end

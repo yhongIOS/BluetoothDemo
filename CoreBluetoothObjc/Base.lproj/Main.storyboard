@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9058" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S81-Vk-giR">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,25 +18,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9g-JH-Wd9">
-                                <rect key="frame" x="253" y="285" width="94" height="30"/>
-                                <state key="normal" title="Scan Devices">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o1l-Ma-Aaq">
+                                <rect key="frame" x="0.0" y="0.0" width="580" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="scanAllDevices:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fxw-V6-gRc"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="4Fl-iY-Sfd"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="LBl-8v-PL0"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="M9g-JH-Wd9" secondAttribute="centerY" id="fvo-U6-aX9"/>
-                            <constraint firstAttribute="centerX" secondItem="M9g-JH-Wd9" secondAttribute="centerX" id="rOC-u7-pGC"/>
+                            <constraint firstItem="o1l-Ma-Aaq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="35f-id-2Bi"/>
+                            <constraint firstItem="o1l-Ma-Aaq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="U2d-g1-VdU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="o1l-Ma-Aaq" secondAttribute="trailing" id="fnN-1K-P9d"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="o1l-Ma-Aaq" secondAttribute="bottom" id="tbs-OE-ujg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ccz-FI-5kD">
+                        <barButtonItem key="rightBarButtonItem" title="Scan" id="MtS-8H-jGX">
+                            <connections>
+                                <action selector="scanAllDevices:" destination="BYZ-38-t0r" id="Tsf-aM-8l4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bluetoothDeviceTableView" destination="o1l-Ma-Aaq" id="Wdr-s6-tgF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1187" y="-402"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AGv-eD-XiN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S81-Vk-giR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zUo-vs-0Ac">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="sVx-Dl-3XJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hf5-s7-taQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="-402"/>
         </scene>
     </scenes>
 </document>

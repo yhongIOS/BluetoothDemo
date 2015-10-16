@@ -7,7 +7,7 @@
 //
 
 #import "CoreBluetoothManager.h"
-#import <CoreBluetooth/CoreBluetooth.h>
+
 
 @interface CoreBluetoothManager ()<CBCentralManagerDelegate>
 {
@@ -18,18 +18,27 @@
 
 @implementation CoreBluetoothManager
 
-+ (CoreBluetoothManager *)sharedManager {
-    static CoreBluetoothManager *sharedAccountManagerInstance = nil;
+//+ (CoreBluetoothManager *)sharedManager {
+//    static CoreBluetoothManager *sharedAccountManagerInstance = nil;
+//    
+//    static dispatch_once_t predicate;
+//    dispatch_once(&predicate, ^{
+//        sharedAccountManagerInstance = [[self alloc] init];
+//        
+//        [sharedAccountManagerInstance setupCentralManager];
+//    });
+//    
+//    return sharedAccountManagerInstance;
+//    
+//}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        [self setupCentralManager];
+    }
     
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        sharedAccountManagerInstance = [[self alloc] init];
-        
-        [sharedAccountManagerInstance setupCentralManager];
-    });
-    
-    return sharedAccountManagerInstance;
-    
+    return self;
 }
 
 - (void)setupCentralManager
@@ -48,7 +57,15 @@
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(coreBluetoothManagerDidScanPeripheral:)]) {
+        [self.delegate coreBluetoothManagerDidScanPeripheral:peripheral];
+    }
     NSLog(@"finded %@", peripheral.name);
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    
 }
 
 @end
